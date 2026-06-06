@@ -24,9 +24,9 @@ RF01 – Realizar login no sistema.RF02 – Alterar senha, se quiser, após o pr
 RNF01 – Interface simples e intuitiva.RNF02 – Tempo de resposta inferior a 5 segundos.RNF03 – Sistema acessível por navegador web.RNF04 – Armazenamento seguro das senhas.RNF05 – Compatibilidade com aparelhos modernos.
 7. Tecnologias Utilizadas
 Front-end
-ReactViteTailwind CSS
+React Vite Tailwind CSS
 Back-end
-Node.jsExpress
+Node.js Express
 Banco de Dados
 SQLite
 Controle de Versão
