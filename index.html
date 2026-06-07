@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RoomiFy - Reserva de Salas</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="login-panel" id="loginPanel">
+        <div class="brand-block">
+          <p class="eyebrow">Sistema academico</p>
+          <h1>RoomiFy</h1>
+          <p>
+            Organize reservas de salas, laboratorios e auditorios em poucos
+            cliques.
+          </p>
+        </div>
+
+        <form class="login-card" id="loginForm">
+          <h2>Acessar sistema</h2>
+          <label>
+            E-mail
+            <input
+              id="email"
+              type="email"
+              value="professor@teste.com"
+              autocomplete="email"
+              required
+            />
+          </label>
+          <label>
+            Senha
+            <input
+              id="senha"
+              type="password"
+              value="123456"
+              autocomplete="current-password"
+              required
+            />
+          </label>
+          <button type="submit">Entrar</button>
+          <p class="hint">Usuario de demonstracao: professor@teste.com</p>
+        </form>
+      </section>
+
+      <section class="dashboard hidden" id="dashboard">
+        <aside class="side-menu" aria-label="Menu principal">
+          <div class="side-brand">
+            <span class="brand-mark">R</span>
+            <strong>RoomiFy</strong>
+          </div>
+          <button class="menu-button active" type="button" data-target="painel">
+            Painel
+          </button>
+          <button class="menu-button" type="button" data-target="notificacoes">
+            Notificacoes
+          </button>
+          <button class="menu-button" type="button" data-target="calendario">
+            Calendario completo
+          </button>
+          <button class="menu-button" type="button" data-target="ajuda">
+            Ajuda
+          </button>
+          <button class="menu-button danger-menu" id="sidebarLogoutButton" type="button">
+            Sair
+          </button>
+        </aside>
+
+        <div class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Painel principal</p>
+            <h1>Reservas de salas</h1>
+          </div>
+          <div class="user-box">
+            <span id="userName">Ola, Prof. Teste</span>
+            <small>Painel de informacoes do professor</small>
+            <button class="ghost-button" id="logoutButton" type="button">
+              Sair
+            </button>
+          </div>
+        </header>
+
+        <section class="summary-grid" id="painel">
+          <article>
+            <span id="totalReservas">0</span>
+            <p>Reservas ativas</p>
+          </article>
+          <article>
+            <span id="totalSalas">4</span>
+            <p>Salas cadastradas</p>
+          </article>
+          <article>
+            <span id="apiStatus">Demo</span>
+            <p>Status da conexao</p>
+          </article>
+          <article>
+            <span id="totalDisponiveis">0</span>
+            <p>Horarios livres hoje</p>
+          </article>
+        </section>
+
+        <section class="workspace">
+          <form class="reservation-form" id="reservationForm">
+            <div class="section-heading">
+              <h2>Nova reserva</h2>
+              <p>Escolha uma data, sala e horario disponivel.</p>
+            </div>
+
+            <label>
+              Data
+              <input id="dataReserva" type="date" required />
+            </label>
+
+            <label>
+              Sala
+              <select id="sala" required></select>
+            </label>
+
+            <label>
+              Horario
+              <select id="horario" required></select>
+            </label>
+
+            <label>
+              Responsavel
+              <input
+                id="responsavel"
+                type="text"
+                value="Professor Teste"
+                required
+              />
+            </label>
+
+            <button type="submit">Confirmar reserva</button>
+            <p class="form-message" id="formMessage" role="status"></p>
+          </form>
+
+          <section class="reservation-list">
+            <div class="section-heading">
+              <h2>Reservas cadastradas</h2>
+              <p>Veja os agendamentos registrados no sistema.</p>
+            </div>
+            <div class="list" id="reservasLista"></div>
+          </section>
+        </section>
+
+        <section class="insights-grid">
+          <section class="chart-panel">
+            <div class="section-heading">
+              <h2>Grafico de ocupacao</h2>
+              <p>Base visual para acompanhar reservas por sala no dia selecionado.</p>
+            </div>
+            <div class="chart" id="ocupacaoChart"></div>
+          </section>
+
+          <section class="notification-panel" id="notificacoes">
+            <div class="section-heading">
+              <h2>Notificacoes</h2>
+              <p>Avisos importantes sobre reservas e disponibilidade.</p>
+            </div>
+            <div class="notification-list" id="notificationList"></div>
+          </section>
+        </section>
+
+        <section class="calendar-panel" id="calendario">
+          <div class="section-heading">
+            <h2>Calendario de disponibilidade</h2>
+            <p>Verifique quais salas estao livres ou reservadas no dia selecionado.</p>
+          </div>
+
+          <div class="calendar-toolbar">
+            <button class="ghost-button" id="previousDayButton" type="button">
+              Dia anterior
+            </button>
+            <strong id="selectedDateLabel">Hoje</strong>
+            <button class="ghost-button" id="nextDayButton" type="button">
+              Proximo dia
+            </button>
+          </div>
+
+          <div class="calendar-wrapper">
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </div>
+        </section>
+
+        <section class="help-panel" id="ajuda">
+          <div class="section-heading">
+            <h2>Ajuda</h2>
+            <p>Fluxo basico para apresentar o funcionamento do sistema.</p>
+          </div>
+          <div class="help-grid">
+            <article>
+              <strong>1. Escolha a data</strong>
+              <p>Use o campo de data ou os botoes do calendario para mudar o dia.</p>
+            </article>
+            <article>
+              <strong>2. Verifique a disponibilidade</strong>
+              <p>Salas livres aparecem em verde; salas reservadas aparecem em vermelho.</p>
+            </article>
+            <article>
+              <strong>3. Confirme ou cancele</strong>
+              <p>Crie a reserva pelo formulario e cancele pela lista de reservas.</p>
+            </article>
+          </div>
+        </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
