@@ -1,0 +1,8 @@
+meu_projeto/
+│
+├── app.py                 (Código Python principal)
+├── templates/
+│   └── index.html         (O seu código HTML alterado abaixo)
+└── static/
+    ├── styles.css         (Seu arquivo CSS)
+    └── app.js             (Seu arquivo JavaScript)
