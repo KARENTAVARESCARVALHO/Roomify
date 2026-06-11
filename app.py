@@ -1,5 +1,5 @@
 
-from flask import Flask, render_code, request, jsonify, redirect, url_for, session
+from flask import Flask, render_code, render_template, request, jsonify, redirect, url_for, session
 
 app = Flask(__name__)
 # Chave secreta necessária para usar sessões de usuário de forma segura
