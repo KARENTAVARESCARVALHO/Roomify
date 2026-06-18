@@ -13,6 +13,7 @@ def iniciar_banco():
             """
             CREATE TABLE IF NOT EXISTS reservas (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                data TEXT NOT NULL,
                 sala TEXT NOT NULL,
                 horario TEXT NOT NULL,
                 responsavel TEXT NOT NULL
@@ -41,6 +42,7 @@ HORARIOS_VALIDOS = [
 
 
 class ModeloReserva(BaseModel):
+    data: str
     sala: str
     horario: str
     responsavel: str
@@ -60,10 +62,14 @@ def listar_todas_as_reservas():
 # ROTA 2: Criar nova reserva com validação de conflito
 @app.post("/reservas")
 def realizar_nova_reserva(dados: ModeloReserva):
-    # Valida se os dados enviados fazem sentido
     if dados.sala not in SALAS_VALIDAS or dados.horario not in HORARIOS_VALIDOS:
         raise HTTPException(
             status_code=400, detail="Sala ou horário inválidos."
+        )
+
+    if not dados.data.strip():
+        raise HTTPException(
+            status_code=400, detail="A data da reserva é obrigatória."
         )
 
     if not dados.responsavel.strip():
@@ -74,10 +80,9 @@ def realizar_nova_reserva(dados: ModeloReserva):
     with sqlite3.connect(DB_NAME) as conexao:
         ponteiro = conexao.cursor()
 
-        # Verifica se já existe a mesma sala no mesmo horário
         ponteiro.execute(
-            "SELECT id FROM reservas WHERE sala = ? AND horario = ?",
-            (dados.sala, dados.horario),
+            "SELECT id FROM reservas WHERE data = ? AND sala = ? AND horario = ?",
+            (dados.data, dados.sala, dados.horario),
         )
         conflito = ponteiro.fetchone()
 
@@ -87,10 +92,9 @@ def realizar_nova_reserva(dados: ModeloReserva):
                 detail="Esta sala já está ocupada neste horário!",
             )
 
-        # Se passou no teste, salva no banco
         ponteiro.execute(
-            "INSERT INTO reservas (sala, horario, responsavel) VALUES (?, ?, ?)",
-            (dados.sala, dados.horario, dados.responsavel),
+            "INSERT INTO reservas (data, sala, horario, responsavel) VALUES (?, ?, ?, ?)",
+            (dados.data, dados.sala, dados.horario, dados.responsavel),
         )
         conexao.commit()
 

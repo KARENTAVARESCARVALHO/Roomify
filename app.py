@@ -1,7 +1,15 @@
 
-from flask import Flask, render_code, render_template, request, jsonify, redirect, url_for, session
+import os
 
-app = Flask(__name__)
+from flask import Flask, jsonify, render_template, request, session
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+app = Flask(
+    __name__,
+    template_folder=BASE_DIR,
+    static_folder=BASE_DIR,
+    static_url_path="",
+)
 # Chave secreta necessária para usar sessões de usuário de forma segura
 app.secret_key = 'chave_secreta_super_segura_roomify'
 

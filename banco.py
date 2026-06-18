@@ -11,6 +11,7 @@ def iniciar_banco():
             """
             CREATE TABLE IF NOT EXISTS reservas (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                data TEXT NOT NULL,
                 sala TEXT NOT NULL,
                 horario TEXT NOT NULL,
                 responsavel TEXT NOT NULL
@@ -18,6 +19,9 @@ def iniciar_banco():
         """
         )
         conexao.commit()
+
+
+iniciar_banco()
 
 
 # Lista de opções que o sistema aceita (dados fixos)

@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://roomify.com";
 
 const salasValidas = [
   "Sala 101 (Laboratório)",
@@ -80,8 +80,10 @@ function atualizarResumo() {
 }
 
 function filtrarReservasDoDia() {
+  const dataSelecionada = dataReservaInput.value;
+
   return reservas.filter(
-    (reserva) => (reserva.data || dataReservaInput.value) === dataReservaInput.value,
+    (reserva) => (reserva.data || dataSelecionada) === dataSelecionada,
   );
 }
 
@@ -125,8 +127,8 @@ async function carregarReservas() {
     }
 
     reservas = (await resposta.json()).map((reserva) => ({
-      data: dataReservaInput.value,
       ...reserva,
+      data: reserva.data || dataReservaInput.value,
     }));
     usandoApi = true;
   } catch {
@@ -142,20 +144,24 @@ function salvarDemo() {
 }
 
 function existeConflito(sala, horario) {
+  const dataSelecionada = dataReservaInput.value;
+
   return reservas.some(
     (reserva) =>
       reserva.sala === sala &&
       reserva.horario === horario &&
-      (reserva.data || dataReservaInput.value) === dataReservaInput.value,
+      (reserva.data || dataSelecionada) === dataSelecionada,
   );
 }
 
 function buscarReserva(sala, horario) {
+  const dataSelecionada = dataReservaInput.value;
+
   return reservas.find(
     (reserva) =>
       reserva.sala === sala &&
       reserva.horario === horario &&
-      (reserva.data || dataReservaInput.value) === dataReservaInput.value,
+      (reserva.data || dataSelecionada) === dataSelecionada,
   );
 }
 

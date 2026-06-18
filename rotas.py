@@ -9,6 +9,7 @@ router = APIRouter()
 
 
 class ModeloReserva(BaseModel):
+    data: str
     sala: str
     horario: str
     responsavel: str
@@ -33,6 +34,11 @@ def realizar_nova_reserva(dados: ModeloReserva):
             status_code=400, detail="Sala ou horário inválidos."
         )
 
+    if not dados.data.strip():
+        raise HTTPException(
+            status_code=400, detail="A data da reserva é obrigatória."
+        )
+
     if not dados.responsavel.strip():
         raise HTTPException(
             status_code=400, detail="Nome do responsável é obrigatório."
@@ -42,8 +48,8 @@ def realizar_nova_reserva(dados: ModeloReserva):
         ponteiro = conexao.cursor()
 
         ponteiro.execute(
-            "SELECT id FROM reservas WHERE sala = ? AND horario = ?",
-            (dados.sala, dados.horario),
+            "SELECT id FROM reservas WHERE data = ? AND sala = ? AND horario = ?",
+            (dados.data, dados.sala, dados.horario),
         )
         conflito = ponteiro.fetchone()
 
@@ -54,8 +60,8 @@ def realizar_nova_reserva(dados: ModeloReserva):
             )
 
         ponteiro.execute(
-            "INSERT INTO reservas (sala, horario, responsavel) VALUES (?, ?, ?)",
-            (dados.sala, dados.horario, dados.responsavel),
+            "INSERT INTO reservas (data, sala, horario, responsavel) VALUES (?, ?, ?, ?)",
+            (dados.data, dados.sala, dados.horario, dados.responsavel),
         )
         conexao.commit()
 
