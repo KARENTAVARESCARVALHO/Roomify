@@ -1,0 +1,48 @@
+name: Gerar APK na Nuvem
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  android-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar codigo do repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias do Capacitor
+        run: npm install
+
+      - name: Criar estrutura Android nativa
+        run: |
+          npx cap add android
+          npx cap sync android
+
+      - name: Configurar Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Configurar Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Compilar e gerar o APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Disponibilizar o APK para Download
+        uses: actions/upload-artifact@v4
+        with:
+          name: meu-aplicativo-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
