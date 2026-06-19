@@ -1,0 +1,26 @@
+{
+  "name": "roomify",
+  "version": "1.0.0",
+  "description": "Projeto Roomfy\r Estácio R9\r Rua André Rocha, 838\r Rio de Janeiro, RJ, 22710-560\r Ramon e Karen\r Bem-vindo ao RoomFy\r É muito bom ter você aqui no nosso projeto! Este documento fornece informações específicas sobre o projeto RoomFy, que consiste em um SISTEMA DE RESERVA DE SALAS, para ajudar você a entender, resumidamente, como ele funciona e em quais objetivos ele se baseia.\r 1. Introdução\r A gestão eficiente de salas de aula é um desafio enfrentado por diversas instituições de ensino. A ausência de um sistema centralizado pode gerar conflitos de horários, reservas duplicadas e dificuldades na organização dos espaços disponíveis, além de muitas salas vazias quando poderiam muito bem estarem sendo utilizadas com um propósito.\r Com o objetivo de otimizar esse processo, foi proposto o desenvolvimento de um Sistema de Reserva de Salas, permitindo que professores e coordenadores realizem agendamentos de forma simples, rápida e segura.\r 2. Objetivo Geral\r Desenvolver uma aplicação web destinada ao gerenciamento de reservas de salas institucionais, proporcionando maior organização dos ambientes e controle dos agendamentos.\r Objetivos Específicos\r Permitir o login de usuários autorizados.Exibir salas disponíveis para reserva.Permitir a criação e o cancelamento de reservas.Evitar conflitos de horários.Garantir segurança por meio de controle institucional de acesso.\r 3. Público-Alvo\r O sistema será destinado exclusivamente a:\r ProfessoresCoordenadoresAdministração da instituição\r Não haverá cadastro público de usuários.\r 4. Regras de Negócio\r Apenas usuários cadastrados pela administração poderão acessar o sistema.Não será permitido cadastro livre de usuários.Professores e coordenadores receberão login e senha fornecidos pela administração.O usuário poderá alterar sua senha após o primeiro acesso.Uma sala não poderá ser reservada para horários já ocupados.O usuário poderá cancelar reservas realizadas por ele.O sistema deverá apresentar apenas horários disponíveis para agendamento.\r 5. Requisitos Funcionais\r RF01 – Realizar login no sistema.RF02 – Alterar senha, se quiser, após o primeiro acesso.RF03 – Visualizar salas disponíveis.RF04 – Consultar horários disponíveis.RF05 – Criar reservas.RF06 – Cancelar reservas.RF07 – Consultar reservas realizadas.RF08 – Exibir painel principal com informações resumidas.\r 6. Requisitos Não Funcionais\r RNF01 – Interface simples e intuitiva.RNF02 – Tempo de resposta inferior a 5 segundos.RNF03 – Sistema acessível por navegador web.RNF04 – Armazenamento seguro das senhas.RNF05 – Compatibilidade com aparelhos modernos.\r 7. Tecnologias Utilizadas\r Front-end\r React Vite Tailwind CSS\r Back-end\r Node.js Express\r Banco de Dados\r SQLite\r Controle de Versão\r GitGitHub\r 8. Estrutura do Sistema\r O sistema será dividido em duas camadas principais:\r Front-end\r Responsável pela interface gráfica, navegação e experiência do usuário.\r Back-end\r Responsável pela autenticação, regras de negócio, gerenciamento das reservas e comunicação com o banco de dados.\r 9. Login de Demonstração\r Para apresentação acadêmica será disponibilizado um usuário de teste:\r E-mail: professor@teste.comSenha: 123456\r Esse usuário será utilizado exclusivamente para demonstrar o funcionamento do sistema durante a avaliação do projeto.\r 10. Conclusão\r O Sistema de Reserva de Salas foi idealizado para solucionar problemas relacionados à organização de ambientes institucionais, oferecendo uma ferramenta prática, segura e eficiente para gerenciamento de reservas. O projeto aplica conceitos de desenvolvimento web moderno, banco de dados, autenticação e experiência do usuário, atendendo aos objetivos propostos para o trabalho acadêmico.\r Conheça a equipe e o projeto à fundo. Estes são os contatos para nos conhecer melhor:\r ramonsa2005@gmail.com\r karentavarescarvalho@gmail.com",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KARENTAVARESCARVALHO/Roomify.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/KARENTAVARESCARVALHO/Roomify/issues"
+  },
+  "homepage": "https://github.com/KARENTAVARESCARVALHO/Roomify#readme",
+  "dependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/cli": "^8.4.1",
+    "@capacitor/core": "^8.4.1"
+  }
+}
