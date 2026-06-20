@@ -26,6 +26,9 @@ jobs:
       - name: Instalar dependencias do Capacitor
         run: npm install
 
+      - name: Corrigir permissao do Capacitor CLI
+        run: chmod +x node_modules/.bin/*
+
       - name: Sincronizar projeto Android
         run: npx cap sync android
 
